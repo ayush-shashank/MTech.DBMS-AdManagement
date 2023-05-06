@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -9,11 +9,13 @@ import { Repository } from 'typeorm';
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private userRepository: Repository<User>
-  ) { }
+    private userRepository: Repository<User>,
+  ) {}
 
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  async create(createUserDto: CreateUserDto) {
+    console.log(createUserDto);
+    const result = await this.userRepository.save(createUserDto);
+    return { userId: result.userId };
   }
 
   findAll() {
@@ -22,7 +24,7 @@ export class UsersService {
   }
 
   findById(id: number) {
-    return this.userRepository.findOneBy({ UserId: id })
+    return this.userRepository.findOneBy({ userId: id });
     // return `This action returns a #${id} user`;
   }
 
@@ -31,7 +33,7 @@ export class UsersService {
   }
 
   async remove(id: number) {
-    let result = await this.userRepository.delete(id);;
+    const result = await this.userRepository.delete(id);
     return result;
     // return `This action removes a #${id} user`;
   }
