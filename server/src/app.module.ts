@@ -18,6 +18,8 @@ import { CompanyModule } from './company/company.module';
 import { PlatformModule } from './platform/platform.module';
 import { ProductModule } from './product/product.module';
 import { ReportModule } from './report/report.module';
+import { AdCampaignModule } from './ad-campaign/ad-campaign.module';
+import { AdHasAdvertiserModule } from './ad-has-advertiser/ad-has-advertiser.module';
 
 @Module({
   imports: [
@@ -43,6 +45,8 @@ import { ReportModule } from './report/report.module';
     PlatformModule,
     ProductModule,
     ReportModule,
+    AdCampaignModule,
+    AdHasAdvertiserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
