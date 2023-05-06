@@ -1,8 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { PlatformService } from './platform.service';
 import { CreatePlatformDto } from './dto/create-platform.dto';
 import { UpdatePlatformDto } from './dto/update-platform.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('platform')
 @Controller('platform')
 export class PlatformController {
   constructor(private readonly platformService: PlatformService) {}
@@ -23,7 +33,10 @@ export class PlatformController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePlatformDto: UpdatePlatformDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updatePlatformDto: UpdatePlatformDto,
+  ) {
     return this.platformService.update(+id, updatePlatformDto);
   }
 
