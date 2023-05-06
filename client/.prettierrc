@@ -1,0 +1,12 @@
+{
+  "trailingComma": "es5",
+  "htmlWhitespaceSensitivity": "css",
+  "semi": true,
+  "bracketSpacing": true,
+  "arrowParens": "always",
+  "quoteProps": "as-needed",
+  "printWidth": 80,
+  "bracketSameLine": false,
+  "singleAttributePerLine": false,
+  "editorconfig": true
+}
