@@ -8,7 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared/shared.module';
-import { bootstrap } from "bootstrap";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,13 @@ import { bootstrap } from "bootstrap";
     PageNotFoundComponent,
     HomeComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SharedModule,
+    NgbModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
