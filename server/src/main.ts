@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { TypeOrmFilter } from './common/filter/type-orm.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,8 +15,10 @@ async function bootstrap() {
         value: true,
       },
       stopAtFirstError: true,
+      transform: true,
     }),
   );
+  app.useGlobalFilters(new TypeOrmFilter());
   swaggerSetup(app);
   await app.listen(3000);
 }
