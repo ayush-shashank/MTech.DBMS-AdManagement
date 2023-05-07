@@ -37,4 +37,18 @@ export class UsersService {
     return result;
     // return `This action removes a #${id} user`;
   }
+
+  login(credentials: { username: string; password: string }) {
+    return this.userRepository.findOneOrFail({
+      select: {
+        userId: true,
+        username: true,
+        name: true,
+        emailId: true,
+        dateOfBirth: true,
+        phoneNumber: true,
+      },
+      where: { username: credentials.username, password: credentials.password },
+    });
+  }
 }
