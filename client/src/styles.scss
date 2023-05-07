@@ -2,4 +2,11 @@
 // Variable overrides first
 
 /* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+@import "bootstrap/scss/bootstrap";
+html,
+body {
+  height: 100%;
+}
+app-root {
+  display: block;
+}

@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { User } from '../model/type/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CoreService {
-  baseUrl = 'http://localhost:3000';
-  apiUrl = `${this.baseUrl}/`;
-  constructor(private http: HttpClient) {}
+  user: User | undefined;
+  constructor() {}
 
   getApi() {
-    return this.http.get(this.apiUrl);
+    // return this.http.get(this.apiUrl);
   }
 }
