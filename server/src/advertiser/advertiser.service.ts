@@ -1,11 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAdvertiserDto } from './dto/create-advertiser.dto';
 import { UpdateAdvertiserDto } from './dto/update-advertiser.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Advertiser } from './entities/advertiser.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AdvertiserService {
+  constructor(
+    @InjectRepository(Advertiser)
+    private advertiserRepository: Repository<Advertiser>,
+  ) {}
   create(createAdvertiserDto: CreateAdvertiserDto) {
-    return 'This action adds a new advertiser';
+    return this.advertiserRepository.insert(createAdvertiserDto);
   }
 
   findAll() {
@@ -17,7 +24,10 @@ export class AdvertiserService {
   }
 
   update(id: number, updateAdvertiserDto: UpdateAdvertiserDto) {
-    return `This action updates a #${id} advertiser`;
+    return this.advertiserRepository.update(
+      { userId: id },
+      updateAdvertiserDto,
+    );
   }
 
   remove(id: number) {

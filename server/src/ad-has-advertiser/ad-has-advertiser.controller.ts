@@ -1,11 +1,23 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { AdHasAdvertiserService } from './ad-has-advertiser.service';
 import { CreateAdHasAdvertiserDto } from './dto/create-ad-has-advertiser.dto';
 import { UpdateAdHasAdvertiserDto } from './dto/update-ad-has-advertiser.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('advertisementHasAdvertiser')
 @Controller('ad-has-advertiser')
 export class AdHasAdvertiserController {
-  constructor(private readonly adHasAdvertiserService: AdHasAdvertiserService) {}
+  constructor(
+    private readonly adHasAdvertiserService: AdHasAdvertiserService,
+  ) {}
 
   @Post()
   create(@Body() createAdHasAdvertiserDto: CreateAdHasAdvertiserDto) {
@@ -23,7 +35,10 @@ export class AdHasAdvertiserController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAdHasAdvertiserDto: UpdateAdHasAdvertiserDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateAdHasAdvertiserDto: UpdateAdHasAdvertiserDto,
+  ) {
     return this.adHasAdvertiserService.update(+id, updateAdHasAdvertiserDto);
   }
 

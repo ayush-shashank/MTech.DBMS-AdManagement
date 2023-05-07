@@ -11,7 +11,6 @@ import { UsersModule } from './users/users.module';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { EmployeeModule } from './employee/employee.module';
 import { AdvertiserModule } from './advertiser/advertiser.module';
-import { AddressModule } from './address/address.module';
 import { AdvertismentModule } from './advertisment/advertisment.module';
 import { BudgetModule } from './budget/budget.module';
 import { CompanyModule } from './company/company.module';
@@ -38,7 +37,6 @@ import { AdHasAdvertiserModule } from './ad-has-advertiser/ad-has-advertiser.mod
     UsersModule,
     EmployeeModule,
     AdvertiserModule,
-    AddressModule,
     AdvertismentModule,
     BudgetModule,
     CompanyModule,

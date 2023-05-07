@@ -1,10 +1,10 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity('Advertiser')
 export class Advertiser {
-  @Column()
+  @PrimaryColumn()
   userId: number;
-  @Column()
+  @PrimaryColumn()
   platformId: number;
   @Column()
   userPlatformId: string;

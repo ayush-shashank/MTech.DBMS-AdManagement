@@ -1,16 +1,20 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { CreateAddressDto } from 'src/company/dto/create-address.dto';
+import { Address } from 'src/company/entities/address.entity';
 
 export class CreateCompanyDto {
   @ApiProperty()
-  CompanyName: string;
+  companyName: string;
   @ApiProperty()
-  PhoneNumber: number;
+  phoneNumber: number;
   @ApiPropertyOptional()
-  Industry: string;
-  @ApiProperty()
-  Website = 'example.com';
+  industry: string;
+  @ApiProperty({ type: 'string' })
+  website = 'example.com';
   @ApiPropertyOptional()
-  AnnualRevenue: number;
+  annualRevenue: number;
   @ApiPropertyOptional()
-  NumberOfEmployees: number;
+  numberOfEmployees: number;
+  @ApiProperty({ type: () => CreateAddressDto })
+  address: Address;
 }

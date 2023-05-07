@@ -9,7 +9,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity()
+@Entity('Employee')
 export class Employee {
   @PrimaryGeneratedColumn()
   employeeId: number;
@@ -17,15 +17,4 @@ export class Employee {
   userId: number;
   @Column()
   companyId: number;
-
-  @OneToOne(() => User)
-  user: User;
-  @ManyToOne(() => Company)
-  company: Company;
-
-  @BeforeInsert()
-  mapIds() {
-    this.userId = this.user.userId;
-    this.companyId = this.company.companyId;
-  }
 }
