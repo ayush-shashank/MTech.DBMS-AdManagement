@@ -11,6 +11,10 @@ import { SharedModule } from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdCampaignComponent } from './ad-campaign/ad-campaign.component';
+import { AdvertisementComponent } from './advertisement/advertisement.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdPerformanceComponent } from './ad-performance/ad-performance.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     PageNotFoundComponent,
     HomeComponent,
+    DashboardComponent,
+    AdCampaignComponent,
+    AdvertisementComponent,
+    AdPerformanceComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +35,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgbModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,15 +1,27 @@
 import { Injectable } from '@angular/core';
 import { DtoService } from './dto.service';
 import { CoreService } from './core.service';
+import { map } from 'rxjs';
+import { Company } from '../model/company';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   constructor(private dto: DtoService, private core: CoreService) {}
-  login(username: string, password: string) {
+  login(username: string, password: string, website?: string) {
     const credentials = { username, password };
-    return this.dto.login(credentials);
+    if (website) {
+      return this.dto.loginEmployee({ ...credentials, website }).pipe(
+        map((result) => {
+          this.core.company = result as Company;
+          return result as User;
+        })
+      );
+    } else {
+      return this.dto.login(credentials);
+    }
   }
 
   logout() {

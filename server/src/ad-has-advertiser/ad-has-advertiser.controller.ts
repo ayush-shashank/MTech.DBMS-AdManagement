@@ -13,7 +13,7 @@ import { UpdateAdHasAdvertiserDto } from './dto/update-ad-has-advertiser.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('advertisementHasAdvertiser')
-@Controller('ad-has-advertiser')
+@Controller('ad-performance')
 export class AdHasAdvertiserController {
   constructor(
     private readonly adHasAdvertiserService: AdHasAdvertiserService,

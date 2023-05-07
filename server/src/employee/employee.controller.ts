@@ -10,7 +10,8 @@ import {
 import { EmployeeService } from './employee.service';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiProperty, ApiTags } from '@nestjs/swagger';
+import { Login } from './dto/login.dto';
 
 @ApiTags('employee')
 @Controller('employee')
@@ -43,5 +44,10 @@ export class EmployeeController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.employeeService.remove(+id);
+  }
+
+  @Post('login')
+  login(@Body() credentials: Login) {
+    return this.employeeService.login(credentials);
   }
 }

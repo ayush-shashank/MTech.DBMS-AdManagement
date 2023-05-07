@@ -29,7 +29,10 @@ export class CompanyService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} company`;
+    return this.companyRepository.findOne({ where: { companyId: id } });
+  }
+  findOneByWebsite(domain: string) {
+    return this.companyRepository.findOneBy({ website: domain });
   }
 
   update(id: number, updateCompanyDto: UpdateCompanyDto) {

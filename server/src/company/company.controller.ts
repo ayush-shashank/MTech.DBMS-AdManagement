@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { CompanyService } from './company.service';
 import { CreateCompanyDto } from './dto/create-company.dto';
@@ -27,6 +28,10 @@ export class CompanyController {
     return this.companyService.findAll();
   }
 
+  @Get('website')
+  findOneByWebsite(@Query('website') domain: string) {
+    return this.companyService.findOneByWebsite(domain);
+  }
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.companyService.findOne(+id);

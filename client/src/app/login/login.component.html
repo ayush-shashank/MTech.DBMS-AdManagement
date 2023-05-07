@@ -21,8 +21,6 @@
 <div class="body">
   <div class="text-center w-50 h-100">
     <div class="form-signin">
-      <!-- <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72"
-          height="72"> -->
       <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" fill="none"
         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto">
         <circle cx="12" cy="12" r="10"></circle>
@@ -35,16 +33,26 @@
       </svg>
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" [(ngModel)]="username" id="inputEmail" class="form-control" placeholder="Email address"
-        required autofocus>
+      <label for="inputUsername" class="sr-only">Username</label>
+      <input type="email" [(ngModel)]="username" id="inputUsername" class="form-control" placeholder="Username" required
+        autofocus>
+      <div *ngIf="isEmployee">
+        <label for="inputWebsite" class="sr-only">Company Website</label>
+        <input type="text" [(ngModel)]="website" id="inputWebsite" class="form-control" placeholder="Company Website"
+          required>
+      </div>
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" [(ngModel)]="password" id="inputPassword" class="form-control" placeholder="Password"
         required>
       <div *ngIf="isInvalid" class="py-3 error-wrapper">
         <span class="error-line" style="color: red;">Credentials are Invalid!</span>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="login()">Sign in</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="isEmployee ? loginEmp() : login()">Sign
+        in</button>
+      <div class="my-5">
+        <span *ngIf="!isEmployee">Employee of an Associated Brand? <a [routerLink]="['employee']">Login</a></span>
+        <span *ngIf="isEmployee">Are you an individual advertiser? <a [routerLink]="['/login']">Login</a></span>
+      </div>
       <p class="mt-5 mb-3 text-muted footer">&copy; 2017-2018</p>
     </div>
   </div>

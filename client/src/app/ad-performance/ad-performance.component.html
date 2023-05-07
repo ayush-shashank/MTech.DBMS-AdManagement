@@ -1,0 +1,61 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Ad Performance</h1>
+  <!-- <div class="d-flex" role="search">
+    <button class="btn btn-outline-warning" type="submit">New Advertisement</button>
+  </div> -->
+  <div class="d-flex" role="search">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </div>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group me-2">
+      <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+      <span data-feather="calendar"></span>
+      This week
+    </button>
+  </div>
+</div>
+<h2></h2>
+<div class="table-responsive">
+  <table class="table table-striped table-hover table-sm">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Advertisement Name</th>
+        <th scope="col">Advertiser</th>
+        <th scope="col">Total Cost ($M)</th>
+        <th scope="col">Total Clicks</th>
+        <th scope="col">Total Conversions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr [routerLink]="[5]">
+        <td>1</td>
+        <td>Fly Air Jordan Ad1</td>
+        <td>Ayush</td>
+        <td>649</td>
+        <td>75378</td>
+        <td>5382</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Fly Air Jordan Ad2</td>
+        <td>Shashank</td>
+        <td>875</td>
+        <td>76475</td>
+        <td>6774</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Caps for All</td>
+        <td>Ayush Shashank</td>
+        <td>235</td>
+        <td>7643</td>
+        <td>4231</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

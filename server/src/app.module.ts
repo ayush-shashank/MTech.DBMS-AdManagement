@@ -29,7 +29,6 @@ import { AdHasAdvertiserModule } from './ad-has-advertiser/ad-has-advertiser.mod
       username: 'root',
       password: 'root',
       database: 'AdManagement',
-      entities: [],
       synchronize: false,
       entityPrefix: 'tbl_',
       autoLoadEntities: true,

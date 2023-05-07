@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+.container-fluid {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+.row {
+  flex: 1 1 auto;
+}

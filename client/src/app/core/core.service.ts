@@ -1,15 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '../model/type/user';
+import { User } from '../model/user';
+import { Company } from '../model/company';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CoreService {
   user: User | undefined;
-  constructor() {}
-
-  getApi() {
-    // return this.http.get(this.apiUrl);
-  }
+  company: Company | undefined;
 }

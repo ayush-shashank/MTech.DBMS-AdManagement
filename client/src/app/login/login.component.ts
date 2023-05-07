@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../core/auth.service';
-import { User } from '../model/type/user';
+import { User } from '../model/user';
 import { CoreService } from '../core/core.service';
 
 @Component({
@@ -12,7 +12,9 @@ import { CoreService } from '../core/core.service';
 export class LoginComponent {
   username: string;
   password: string;
+  website: string;
   isInvalid = false;
+  isEmployee = false;
 
   constructor(
     private router: Router,
@@ -22,11 +24,29 @@ export class LoginComponent {
   ) {
     this.username = '';
     this.password = '';
+    this.website = '';
+    this.route.data.subscribe((data) => {
+      console.log(data);
+      console.log(data['isEmployee']);
+      this.isEmployee = data['isEmployee'];
+    });
   }
 
   login() {
-    console.log(this.username, this.password);
     this.auth.login(this.username, this.password).subscribe({
+      next: (result: User) => {
+        this.isInvalid = false;
+        this.core.user = result;
+        this.router.navigate(['dashboard']);
+      },
+      error: (err) => {
+        this.isInvalid = true;
+      },
+    });
+  }
+  loginEmp() {
+    console.log(this.username, this.password, this.website);
+    this.auth.login(this.username, this.password, this.website).subscribe({
       next: (result: User) => {
         this.isInvalid = false;
         this.core.user = result;
