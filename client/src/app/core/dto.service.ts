@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../model/user';
 import { catchError, map, throwError } from 'rxjs';
 import { Company } from '../model/company';
+import { AdCampaign } from '../model/ad-campaign';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,7 @@ export class DtoService {
   users = this.baseUrl + '/users';
   company = this.baseUrl + '/company';
   employee = this.baseUrl + '/employee';
+  campaign = this.baseUrl + '/ad-campaign';
 
   constructor(private http: HttpClient) {}
 
@@ -23,6 +25,7 @@ export class DtoService {
         catchError(() => throwError(() => new Error('Invalid Credentials')))
       );
   }
+
   loginEmployee(credentials: {
     username: string;
     password: string;
@@ -39,12 +42,21 @@ export class DtoService {
         catchError(() => throwError(() => new Error('Invalid Credentials')))
       );
   }
+
   getCompany(website: string) {
     const query = new URLSearchParams({ website });
     return this.http
       .get<Company>(`${this.employee}/website?${query}`)
       .pipe(
         catchError(() => throwError(() => new Error('Invalid Credentials')))
+      );
+  }
+
+  getAdCampaign() {
+    return this.http
+      .get<AdCampaign>(`${this.campaign}`)
+      .pipe(
+        catchError(() => throwError(() => new Error('Invalid Campaign Id')))
       );
   }
 }

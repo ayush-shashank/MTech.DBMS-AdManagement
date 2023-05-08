@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { AdCampaignService } from './ad-campaign.service';
 import { CreateAdCampaignDto } from './dto/create-ad-campaign.dto';
@@ -23,13 +24,17 @@ export class AdCampaignController {
   }
 
   @Get()
-  findAll() {
-    return this.adCampaignService.findAll();
+  findAll(@Query('managerId') managerId: number) {
+    return managerId
+      ? this.adCampaignService.findAll(managerId)
+      : this.adCampaignService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.adCampaignService.findOne(+id);
+  findOne(@Param('id') id: number, @Query('managerId') managerId: number) {
+    return managerId
+      ? this.adCampaignService.findOne(+id, managerId)
+      : this.adCampaignService.findOne(+id);
   }
 
   @Patch(':id')

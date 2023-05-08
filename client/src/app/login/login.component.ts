@@ -37,6 +37,7 @@ export class LoginComponent {
       next: (result: User) => {
         this.isInvalid = false;
         this.core.user = result;
+        this.core.isEmployee = false;
         this.router.navigate(['dashboard']);
       },
       error: (err) => {
@@ -50,6 +51,7 @@ export class LoginComponent {
       next: (result: User) => {
         this.isInvalid = false;
         this.core.user = result;
+        this.core.isEmployee = true;
         this.router.navigate(['dashboard']);
       },
       error: (err) => {

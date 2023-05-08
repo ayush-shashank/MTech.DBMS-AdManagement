@@ -1,19 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAdCampaignDto } from './dto/create-ad-campaign.dto';
 import { UpdateAdCampaignDto } from './dto/update-ad-campaign.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { User } from 'src/users/entities/user.entity';
+import { Repository } from 'typeorm';
+import { AdCampaign } from './entities/ad-campaign.entity';
 
 @Injectable()
 export class AdCampaignService {
+  constructor(
+    @InjectRepository(AdCampaign)
+    private campaignRepository: Repository<AdCampaign>,
+  ) {}
   create(createAdCampaignDto: CreateAdCampaignDto) {
-    return 'This action adds a new adCampaign';
+    return this.campaignRepository.save(createAdCampaignDto);
   }
 
-  findAll() {
-    return `This action returns all adCampaign`;
+  findAll(managerId?: number) {
+    return managerId
+      ? this.campaignRepository.find({ where: { managerId } })
+      : this.campaignRepository.find({});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} adCampaign`;
+  findOne(id: number, managerId?: number) {
+    return managerId
+      ? this.campaignRepository.findOne({
+          where: { campaignId: id, managerId },
+        })
+      : this.campaignRepository.findOne({ where: { campaignId: id } });
   }
 
   update(id: number, updateAdCampaignDto: UpdateAdCampaignDto) {

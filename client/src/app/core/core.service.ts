@@ -9,4 +9,5 @@ import { Company } from '../model/company';
 export class CoreService {
   user: User | undefined;
   company: Company | undefined;
+  isEmployee = false;
 }

@@ -15,6 +15,8 @@ import { AdCampaignComponent } from './ad-campaign/ad-campaign.component';
 import { AdvertisementComponent } from './advertisement/advertisement.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdPerformanceComponent } from './ad-performance/ad-performance.component';
+import { DashContentComponent } from './dashboard/dash-content/dash-content.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { AdPerformanceComponent } from './ad-performance/ad-performance.componen
     AdCampaignComponent,
     AdvertisementComponent,
     AdPerformanceComponent,
+    DashContentComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
