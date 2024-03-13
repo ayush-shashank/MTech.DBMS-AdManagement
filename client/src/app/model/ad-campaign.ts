@@ -6,4 +6,5 @@ export interface AdCampaign {
   targetAudience: string;
   startDate: Date;
   endDate: Date;
+  productName?:string
 }

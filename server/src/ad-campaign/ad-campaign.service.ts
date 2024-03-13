@@ -2,8 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateAdCampaignDto } from './dto/create-ad-campaign.dto';
 import { UpdateAdCampaignDto } from './dto/update-ad-campaign.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/users/entities/user.entity';
-import { Repository } from 'typeorm';
+import { EntityManager, Repository } from 'typeorm';
 import { AdCampaign } from './entities/ad-campaign.entity';
 
 @Injectable()
@@ -11,15 +10,34 @@ export class AdCampaignService {
   constructor(
     @InjectRepository(AdCampaign)
     private campaignRepository: Repository<AdCampaign>,
+    private entity: EntityManager,
   ) {}
   create(createAdCampaignDto: CreateAdCampaignDto) {
     return this.campaignRepository.save(createAdCampaignDto);
   }
 
   findAll(managerId?: number) {
-    return managerId
-      ? this.campaignRepository.find({ where: { managerId } })
-      : this.campaignRepository.find({});
+    // return managerId
+    //   ? this.campaignRepository.find({
+    //       where: { managerId },
+    //     })
+    //   : this.campaignRepository.find({});
+
+    const query = managerId
+      ? `
+      SELECT C.campaignId, C.managerId, C.productId, C.campaignName, C.targetAudience, C.startDate,
+        C.endDate, P.productName
+      FROM tbl_AdCampaign C
+        INNER JOIN tbl_Product P ON C.productId = P.productId
+      WHERE C.managerId = ?
+      `
+      : `
+      SELECT C.campaignId, C.managerId, C.productId, C.campaignName, C.targetAudience, C.startDate,
+      C.endDate, P.productName, P.productName
+      FROM tbl_AdCampaign C
+        INNER JOIN tbl_Product P ON C.productId = P.productId
+      `;
+    return this.entity.query(query, [managerId]).;
   }
 
   findOne(id: number, managerId?: number) {

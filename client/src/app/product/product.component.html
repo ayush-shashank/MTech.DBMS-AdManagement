@@ -1,11 +1,12 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
   <h1 class="h2">Products</h1>
-  <div class="d-flex" role="search">
+  <div class="d-flex">
     <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">New Product</button>
   </div>
   <div class="d-flex" role="search">
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success" type="submit">Search</button>
+    <input class="form-control me-2" type="search" placeholder="Search Product" (change)="search($event)"
+      aria-label="Search">
+    <button class="btn btn-outline-success">Search</button>
   </div>
   <div class="btn-toolbar mb-2 mb-md-0">
     <!-- <div class="btn-group me-2">
@@ -27,6 +28,7 @@
         <th scope="col" colspan="2">Product</th>
         <!-- <th scope="col">Product</th> -->
         <th scope="col">Price</th>
+        <th scope="col">Category</th>
         <th scope="col">Description</th>
       </tr>
     </thead>

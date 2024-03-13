@@ -24,17 +24,13 @@ export class AdCampaignController {
   }
 
   @Get()
-  findAll(@Query('managerId') managerId: number) {
-    return managerId
-      ? this.adCampaignService.findAll(managerId)
-      : this.adCampaignService.findAll();
+  findAll(@Query('managerId') managerId?: number) {
+    return this.adCampaignService.findAll(managerId);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number, @Query('managerId') managerId: number) {
-    return managerId
-      ? this.adCampaignService.findOne(+id, managerId)
-      : this.adCampaignService.findOne(+id);
+  findOne(@Param('id') id: number, @Query('managerId') managerId?: number) {
+    return this.adCampaignService.findOne(+id, managerId);
   }
 
   @Patch(':id')

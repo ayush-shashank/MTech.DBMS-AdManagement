@@ -4,6 +4,7 @@ import { User } from '../model/user';
 import { catchError, map, throwError } from 'rxjs';
 import { Company } from '../model/company';
 import { AdCampaign } from '../model/ad-campaign';
+import { Product } from '../model/product';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ export class DtoService {
   company = this.baseUrl + '/company';
   employee = this.baseUrl + '/employee';
   campaign = this.baseUrl + '/ad-campaign';
+  product = this.baseUrl + '/product';
 
   constructor(private http: HttpClient) {}
 
@@ -52,11 +54,43 @@ export class DtoService {
       );
   }
 
-  getAdCampaign() {
+  getAdCampaigns(managerId?: number) {
+    const url = managerId
+      ? `${this.campaign}?managerId=${managerId}`
+      : `${this.campaign}`;
     return this.http
-      .get<AdCampaign>(`${this.campaign}`)
+      .get<AdCampaign[]>(url)
+      .pipe(
+      //   map(campaigns=>{
+
+      // }),
+        catchError(() => throwError(() => new Error('Invalid Campaign Id')))
+      );
+  }
+
+  createAdCampaign(campaignDto: AdCampaign) {
+    return this.http
+      .post<AdCampaign>(`${this.campaign}`, campaignDto)
+      .pipe(
+        catchError(() => throwError(() => new Error('Invalid Credentials')))
+      );
+  }
+
+  getProducts(companyId?: number) {
+    const url = companyId
+      ? `${this.product}?companyId=${companyId}`
+      : `${this.product}`;
+    return this.http
+      .get<Product[]>(url)
       .pipe(
         catchError(() => throwError(() => new Error('Invalid Campaign Id')))
+      );
+  }
+  createProduct(productDto: Product) {
+    return this.http
+      .post<Product>(`${this.product}`, productDto)
+      .pipe(
+        catchError(() => throwError(() => new Error('Invalid Credentials')))
       );
   }
 }

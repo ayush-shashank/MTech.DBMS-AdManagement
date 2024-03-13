@@ -52,7 +52,7 @@
       <tr *ngFor="let campaign of adCampaigns" [routerLink]="[campaign.campaignId]">
         <td>{{campaign.campaignId}}</td>
         <td>{{campaign.campaignName}}</td>
-        <td>{{campaign.productId}}</td>
+        <td>{{campaign.productName}}</td>
         <td>{{campaign.targetAudience}}</td>
         <td>{{(campaign.startDate | date: 'dd/MM/yyyy')??'-'}}</td>
         <td>{{(campaign.endDate | date: 'dd/MM/yyyy')??'-'}}</td>
@@ -67,7 +67,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Product</h1>
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Cerate New Ad Campaign</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -77,9 +77,9 @@
         <label for="inputPassword" class="sr-only">Product</label>
         <select class="form-select" [(ngModel)]="newCampaign.productId" aria-label="Select Product">
           <option selected disabled>Select Product</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          <option *ngFor="let product of productList" [value]="product.productId">
+            {{product.productName}}
+          </option>
         </select>
         <label for="targetAudience" class="sr-only">Target Audience</label>
         <input type="text" [(ngModel)]="newCampaign.targetAudience" id="targetAudience" class="form-control"
@@ -94,7 +94,7 @@
       <span *ngIf="isRequired" style="color: red;" class="text-center">* Marked Details are Required!</span>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="addNewCampaign()">Add Product</button>
+        <button type="button" class="btn btn-primary" (click)="addNewCampaign()">Create Campaign</button>
       </div>
     </div>
   </div>
